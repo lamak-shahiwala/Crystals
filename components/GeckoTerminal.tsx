@@ -7,7 +7,7 @@ export default function GeckoTerminal() {
       frameBorder="0"
       allow="clipboard-write"
       allowFullScreen
-      className="w-full h-full px-5 py-5 border rounded-2xl"
+      className="w-full h-[60vh] lg:w-full lg:h-full px-5 py-5 border rounded-2xl"
     />
   );
 }

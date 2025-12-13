@@ -147,7 +147,11 @@ export default React.memo(function Card({
               ))}
             </div>
 
-            <CTAButton onClick={() => {}} aria-label={`Trade ${appName}`}>
+            <CTAButton
+              onClick={() => {}}
+              aria-label={`Trade`}
+              className="w-full"
+            >
               Trade
             </CTAButton>
           </div>

@@ -12,7 +12,7 @@ export default function Navbar() {
           <Link href={"/"}>
             <div className="flex cursor-pointer gap-2 px-2 items-center">
               <GiCrystalGrowth className="h-12 w-12 text-gray-900 px-2 py-2 border rounded-lg flex items-center justify-center" />
-              <span className="text-xl md:text-2xl lg:text-3xl font-title font-bold text-gray-900">
+              <span className="hidden md:block text-xl md:text-2xl lg:text-3xl font-title font-bold text-gray-900">
                 Crystals
               </span>
             </div>

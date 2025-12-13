@@ -25,7 +25,7 @@ export default function ConnectWalletButton() {
   return (
     <>
       <div
-        className="px-4 py-2 border h-[8vh] rounded-full
+        className="px-4 py-2 border h-[6.75vh] md:h-[8vh] rounded-full
                    flex items-center justify-center text-center
                    hover:border-gray-400 hover:cursor-pointer"
       >
