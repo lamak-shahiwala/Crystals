@@ -78,7 +78,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <PrivyProvider
         appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID!}
         config={{
-          appearance: { theme: "light" },
+          appearance: {
+            theme: "light",
+            walletList: ["metamask", "coinbase_wallet"], // Correct way to list wallets
+          },
           loginMethods: ["wallet"],
         }}
       >
