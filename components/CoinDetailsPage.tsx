@@ -15,7 +15,7 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
   >("transactions");
 
   return (
-    <div className="md:h-full flex flex-col">
+    <div>
       <div className="h-full flex flex-col bg-bg text-text rounded-2xl p-6 border">
         <div className="mb-5">
           <div className="flex items-start gap-4">
