@@ -48,7 +48,7 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
           </p>
 
           {/* Stats grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4 lg:mb-10">
+          <div className="grid grid-cols-3 gap-3 mb-4 lg:mb-10">
             {data.stats
               .filter((stat) => stat.id !== "eth")
               .map((stat) => (
