@@ -1,11 +1,10 @@
 // Section: Yesterday's Top Apps
 
-'use client';
+"use client";
 
-import { mockApps } from '@/data/app';
-import Card from '../Card';
-import type { CardData, Stat } from '@/types/card';
-
+import { mockApps } from "@/data/app";
+import Card from "../Card";
+import type { CardData, Stat } from "@/types/card";
 
 export default function YesterdaysTopAppsSection({
   title = "Yesterday's top apps",
@@ -15,10 +14,10 @@ export default function YesterdaysTopAppsSection({
   apps?: CardData[];
 }) {
   return (
-    <section className="w-full flex justify-center py-10">
+    <section className="w-full flex justify-center py-6 lg:py-8">
       <div className="w-full max-w-6xl px-4">
         {/* Header row: title + small action */}
-        <div className="flex items-baseline justify-between mb-6 gap-4">
+        <div className="flex items-baseline justify-between mb-5 lg:mb-6 gap-4">
           <h3 className="text-2xl md:text-3xl font-bold font-title text-gray-900">
             {title}
           </h3>
@@ -32,8 +31,8 @@ export default function YesterdaysTopAppsSection({
             </li>
           ))}
         </ol>
-        <button className='w-full h-16 mt-5 border-2 rounded-full text-text-muted'>
-            See all of yesterday's top apps
+        <button className="w-full h-16 mt-5 border-2 rounded-full text-text-muted">
+          See all of yesterday's top apps
         </button>
       </div>
     </section>
