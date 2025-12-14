@@ -1,11 +1,11 @@
 export default function Header() {
   return (
     <header className="w-full flex justify-center">
-      <div className="w-full max-w-6xl p-4">
+      <div className="w-full max-w-6xl p-4 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden">
         <div
           className="
             relative rounded-2xl md:rounded-3xl overflow-hidden
-            h-[60vh] sm:h-[65vh] md:h-[70vh] lg:h-[82vh]
+            h-[25vh] sm:h-[25vh] md:h-[30vh] lg:h-[40vh]
           "
           style={{
             boxShadow: "inset 0 0 60px rgba(0, 0, 0, 0.9)",
@@ -13,7 +13,7 @@ export default function Header() {
         >
           {/* Background image */}
           <div
-            className="absolute inset-0 bg-center bg-cover"
+            className="absolute inset-0 bg-right lg:bg-center bg-cover"
             style={{
               backgroundImage: "url('/images/header-cover.png')",
             }}
@@ -22,12 +22,11 @@ export default function Header() {
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/40" />
 
-          {/* Content */}
-          <div className="relative z-10 flex items-center justify-center w-full h-full">
-            <div className="text-center px-4 sm:px-8 md:px-12">
+          <div className="relative z-10 flex items-center justify-start w-full h-full md:pl-4">
+            <div className="text-left px-4 sm:px-8 md:px-12">
               <h1
                 className="
-                  text-white font-title font-bold leading-tight
+                  text-bg font-title font-bold leading-tight
                   text-3xl sm:text-4xl md:text-6xl lg:text-7xl
                 "
               >
