@@ -18,6 +18,7 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
     <div>
       <div className="rounded-[2.5rem] border overflow-hidden">
         <div className="h-full flex flex-col bg-bg text-text rounded-2xl p-6">
+          {/* Header */}
           <div className="mb-5">
             <h1 className="text-3xl font-title leading-tight">
               {data.appName}
@@ -47,7 +48,7 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
             {data.description}
           </p>
 
-          {/* Stats grid */}
+          {/* Stats */}
           <div className="grid grid-cols-3 gap-3 mb-4 lg:mb-10">
             {data.stats
               .filter((stat) => stat.id !== "eth")
@@ -63,9 +64,9 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
               ))}
           </div>
 
-          {/* Tabs */}
+          {/* Tabs (scrollable on mobile) */}
           <div className="mb-3">
-            <nav className="flex justify-between border-b border-bg-tertiary pb-3">
+            <nav className="flex gap-2 overflow-x-auto whitespace-nowrap border-b border-bg-tertiary pb-3 scrollbar-hide">
               {[
                 { key: "activity", label: "Activity" },
                 { key: "holders", label: "Holders" },
@@ -77,16 +78,18 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
                   | "holders"
                   | "details"
                   | "tokenomics";
+
                 const active = activeTab === k;
+
                 return (
                   <button
                     key={k}
                     onClick={() => setActiveTab(k)}
                     aria-pressed={active}
                     className={clsx(
-                      "py-1 px-5 text-sm font-medium transition",
+                      "flex-shrink-0 py-1 px-5 text-sm font-medium transition rounded-full",
                       active
-                        ? "text-bg bg-primary border border-primary rounded-full items-center"
+                        ? "text-bg bg-primary border border-primary"
                         : "text-text-muted hover:text-text"
                     )}
                   >
@@ -97,55 +100,36 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
             </nav>
           </div>
 
-          {/* Tab content — scrollable area */}
+          {/* Tab Content */}
           <div className="flex-1 overflow-auto pr-2 text-sm text-text-muted">
             {activeTab === "activity" && (
-              <div>
-                <div className="space-y-2">
-                  <div className="">
-                    <ActivitiesList items={mockActivities} />
-                  </div>
-                </div>
-              </div>
+              <ActivitiesList items={mockActivities} />
             )}
 
             {activeTab === "holders" && (
-              <div>
-                <div className="space-y-3">
-                  <div className="p-3 rounded-md bg-bg-secondary">
-                    Holders list will appear here.
-                  </div>
-                </div>
+              <div className="p-3 rounded-md bg-bg-secondary">
+                Holders list will appear here.
               </div>
             )}
 
             {activeTab === "details" && (
-              <div>
-                <div className="space-y-3">
-                  <div className="p-3 rounded-md bg-bg-secondary">
-                    Details list will appear here.
-                  </div>
-                </div>
+              <div className="p-3 rounded-md bg-bg-secondary">
+                Details list will appear here.
               </div>
             )}
 
             {activeTab === "tokenomics" && (
-              <div>
-                <div className="space-y-3">
-                  <div className="p-3 rounded-md bg-bg-secondary">
-                    Tokenomics list will appear here.
-                  </div>
-                </div>
+              <div className="p-3 rounded-md bg-bg-secondary">
+                Tokenomics list will appear here.
               </div>
             )}
 
-            {/* spacer to ensure sticky button doesn't overlap last content */}
             <div className="h-20" />
           </div>
         </div>
       </div>
 
-      {/* STICKY TRADE BAR: This is outside the main rounded block, allowing it to be sticky. */}
+      {/* Sticky CTA */}
       <div className="sticky bottom-0 pt-6 backdrop-blur-lg bg-bg">
         <CTAButton className="w-full font-body">Trade</CTAButton>
       </div>

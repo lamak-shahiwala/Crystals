@@ -7,6 +7,14 @@ body.modal-open {
   overflow: hidden;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 :root {
   /* Brand Colors */
   --color-primary: #34C759;
