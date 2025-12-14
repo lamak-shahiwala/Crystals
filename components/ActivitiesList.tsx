@@ -4,7 +4,6 @@ import ActivityStatusButton from "./ActivityStatusButton";
 import { Activity } from "@/types/activity";
 
 function Avatar({ user }: { user: string }) {
-  // fallback avatar using first letter
   return (
     <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-sm font-medium text-gray-700">
       {user.charAt(0).toUpperCase()}
@@ -14,8 +13,12 @@ function Avatar({ user }: { user: string }) {
 
 function ActivityRow({ item }: { item: Activity }) {
   return (
-    <div className="flex items-center justify-between py-3">
-      {/* LEFT: Avatar + username */}
+    <div
+      className="grid py-3 items-center"
+      style={{
+        gridTemplateColumns: "minmax(0, 1fr) auto 20px 64px 80px 40px",
+      }}
+    >
       <div className="flex items-center gap-3 min-w-0">
         <Avatar user={item.user} />
 
@@ -26,25 +29,19 @@ function ActivityRow({ item }: { item: Activity }) {
         </div>
       </div>
 
-      {/* STATUS BUTTON */}
-      <div className="flex-1 flex justify-start pl-4">
+      <div className="flex justify-center items-center">
         <ActivityStatusButton status={item.status} />
       </div>
 
-      {/* AMOUNT */}
-      <div className="w-16 text-right text-sm font-semibold text-text">
+      <div />
+
+      <div className="text-right text-sm font-semibold text-text">
         {item.amountShort}
       </div>
 
-      {/* PRICE */}
-      <div className="w-20 text-right text-sm text-text-subtle">
-        {item.price}
-      </div>
+      <div className="text-right text-sm text-text-subtle">{item.price}</div>
 
-      {/* TIME AGO */}
-      <div className="w-10 text-right text-xs text-text-muted">
-        {item.timeAgo}
-      </div>
+      <div className="text-right text-xs text-text-muted">{item.timeAgo}</div>
     </div>
   );
 }

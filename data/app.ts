@@ -60,7 +60,7 @@ export const mockActivities: Activity[] = [
   {
     id: "tx-1",
     user: "strivn",
-    status: "completed",
+    status: "buy",
     amountShort: "7.1m",
     price: "$0.49",
     timeAgo: "11h",
@@ -68,7 +68,7 @@ export const mockActivities: Activity[] = [
   {
     id: "tx-2",
     user: "strivn",
-    status: "pending",
+    status: "sell",
     amountShort: "7.1m",
     price: "$0.50",
     timeAgo: "11h",
@@ -76,7 +76,7 @@ export const mockActivities: Activity[] = [
   {
     id: "tx-3",
     user: "ratpick",
-    status: "completed",
+    status: "buy",
     amountShort: "14m",
     price: "$0.41",
     timeAgo: "11h",
