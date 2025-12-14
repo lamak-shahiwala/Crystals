@@ -11,7 +11,7 @@ import { mockActivities } from "@/data/app";
 
 export default function CoinDetailsPage({ data }: { data: CardData }) {
   const [activeTab, setActiveTab] = useState<
-    "activity" | "members" | "holders"
+    "activity" | "holders" | "details" | "tokenomics"
   >("activity");
 
   return (
@@ -68,10 +68,15 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
             <nav className="flex justify-between border-b border-bg-tertiary pb-3">
               {[
                 { key: "activity", label: "Activity" },
-                { key: "members", label: "Members" },
                 { key: "holders", label: "Holders" },
+                { key: "details", label: "Details" },
+                { key: "tokenomics", label: "Tokenomics" },
               ].map((t) => {
-                const k = t.key as "activity" | "members" | "holders";
+                const k = t.key as
+                  | "activity"
+                  | "holders"
+                  | "details"
+                  | "tokenomics";
                 const active = activeTab === k;
                 return (
                   <button
@@ -104,21 +109,31 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
               </div>
             )}
 
-            {activeTab === "members" && (
-              <div>
-                <div className="space-y-3">
-                  <div className="p-3 rounded-md bg-bg-secondary">
-                    Members list will appear here.
-                  </div>
-                </div>
-              </div>
-            )}
-
             {activeTab === "holders" && (
               <div>
                 <div className="space-y-3">
                   <div className="p-3 rounded-md bg-bg-secondary">
                     Holders list will appear here.
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "details" && (
+              <div>
+                <div className="space-y-3">
+                  <div className="p-3 rounded-md bg-bg-secondary">
+                    Details list will appear here.
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "tokenomics" && (
+              <div>
+                <div className="space-y-3">
+                  <div className="p-3 rounded-md bg-bg-secondary">
+                    Tokenomics list will appear here.
                   </div>
                 </div>
               </div>

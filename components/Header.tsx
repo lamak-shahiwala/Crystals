@@ -11,11 +11,18 @@ export default function Header() {
             boxShadow: "inset 0 0 60px rgba(0, 0, 0, 0.9)",
           }}
         >
-          {/* Background image */}
+          {/* Background image for Desktop*/}
           <div
-            className="absolute inset-0 bg-right lg:bg-center bg-cover"
+            className="hidden lg:block absolute inset-0 bg-center bg-cover"
             style={{
               backgroundImage: "url('/images/header-cover.png')",
+            }}
+          />
+          {/* Background image for Mobile*/}
+          <div
+            className="block lg:hidden absolute inset-0 bg-center bg-cover"
+            style={{
+              backgroundImage: "url('/images/header-cover_mobile.png')",
             }}
           />
 

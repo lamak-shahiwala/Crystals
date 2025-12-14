@@ -14,10 +14,10 @@ export default function YesterdaysTopAppsSection({
   apps?: CardData[];
 }) {
   return (
-    <section className="w-full flex justify-center py-6 lg:py-8">
+    <section className="w-full flex justify-center py-5 md:py-6 lg:py-8">
       <div className="w-full max-w-6xl px-4">
         {/* Header row: title + small action */}
-        <div className="flex items-baseline justify-between mb-5 lg:mb-6 gap-4">
+        <div className="flex items-baseline justify-between mb-4 sm:mb-5 lg:mb-6 gap-4">
           <h3 className="text-2xl md:text-3xl font-bold font-title text-gray-900">
             {title}
           </h3>
