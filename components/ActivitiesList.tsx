@@ -13,44 +13,51 @@ function Avatar({ user }: { user: string }) {
 
 function ActivityRow({ item }: { item: Activity }) {
   return (
-    <div>
-      <div
-        className="grid py-3 items-center overflow-x-auto overflow-auto scrollbar-hide"
-        style={{
-          gridTemplateColumns: "minmax(90px, 0.8fr) auto 80px 90px 50px",
-        }}
-      >
-        {/* Username */}
-        <div className="flex items-center gap-3 min-w-0">
-          <Avatar user={item.user} />
-          <div className="block text-sm font-medium text-text truncate">
+    <div
+      className="
+        grid py-3 items-center
+        sm:[grid-template-columns:minmax(0,1fr)_auto_20px_64px_80px_40px]
+      "
+      style={{
+        gridTemplateColumns: "minmax(0,1fr)_auto_8px_48px_64px_32px",
+      }}
+    >
+      {/* User */}
+      <div className="flex items-center gap-3 min-w-0">
+        <Avatar user={item.user} />
+
+        <div className="min-w-0">
+          <div className="text-sm font-medium text-text truncate">
             {item.user}
           </div>
         </div>
-
-        {/* Status */}
-        <div className="flex justify-end items-center">
-          <ActivityStatusButton status={item.status} />
-        </div>
-
-        {/* Amount */}
-        <div className="text-right text-sm font-semibold text-text">
-          {item.amountShort}
-        </div>
-
-        {/* Price */}
-        <div className="text-right text-sm text-text-subtle">{item.price}</div>
-
-        {/* Time */}
-        <div className="text-right text-xs text-text-muted">{item.timeAgo}</div>
       </div>
+
+      {/* Status */}
+      <div className="flex justify-center items-center">
+        <ActivityStatusButton status={item.status} />
+      </div>
+
+      {/* Spacer */}
+      <div />
+
+      {/* Amount */}
+      <div className="text-right text-sm font-semibold text-text">
+        {item.amountShort}
+      </div>
+
+      {/* Price */}
+      <div className="text-right text-sm text-text-subtle">{item.price}</div>
+
+      {/* Time */}
+      <div className="text-right text-xs text-text-muted">{item.timeAgo}</div>
     </div>
   );
 }
 
 export default function ActivitiesList({ items }: { items: Activity[] }) {
   return (
-    <div className="mt-2 space-y-1">
+    <div className="mt-2">
       {items.map((activity) => (
         <ActivityRow key={activity.id} item={activity} />
       ))}
