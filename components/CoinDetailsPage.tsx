@@ -8,6 +8,10 @@ import { IoGlobeOutline } from "react-icons/io5";
 import { FaDiscord, FaXTwitter } from "react-icons/fa6";
 import ActivitiesList from "./ActivitiesList";
 import { mockActivities } from "@/data/app";
+import HoldersList from "./HoldersList";
+import { mockHolders } from "@/data/holders";
+import DetailsList from "./DetailsList";
+import { mockDetails } from "@/data/details";
 
 export default function CoinDetailsPage({ data }: { data: CardData }) {
   const [activeTab, setActiveTab] = useState<
@@ -106,15 +110,11 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
               <ActivitiesList items={mockActivities} />
             )}
 
-            {activeTab === "holders" && (
-              <div className="p-3 rounded-md bg-bg-secondary">
-                Holders list will appear here.
-              </div>
-            )}
+            {activeTab === "holders" && <HoldersList holders={mockHolders} />}
 
             {activeTab === "details" && (
-              <div className="p-3 rounded-md bg-bg-secondary">
-                Details list will appear here.
+              <div className="">
+                <DetailsList details={mockDetails} />
               </div>
             )}
 

@@ -12,7 +12,7 @@ export const mockApps: CardData[] = [
     description:
       'Crystal Market is a prediction protocol that lets users speculate on future on-chain and off-chain events. Traders buy and sell Crystal AppCoins representing outcomes, driving accurate, real-time forecasting markets.',
     stats: [
-      { id: 'mktcap', label: 'MCAP', value: '558.0k' },
+      { id: 'mktap', label: 'MCAP', value: '558.0k' },
       { id: '24h', label: '24h', value: '18.1k' },
       { id: '24h△', label: '24h△', value: '+15.26%' },
     ],
