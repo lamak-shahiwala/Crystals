@@ -7,7 +7,7 @@ import clsx from "clsx";
 import { IoGlobeOutline } from "react-icons/io5";
 import { FaDiscord, FaXTwitter } from "react-icons/fa6";
 import ActivitiesList from "./ActivitiesList";
-import { mockActivities } from "@/data/app";
+import { mockActivities } from "@/data/activity";
 import HoldersList from "./HoldersList";
 import { mockHolders } from "@/data/holders";
 import DetailsList from "./DetailsList";

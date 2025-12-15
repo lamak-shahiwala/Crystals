@@ -3,7 +3,7 @@ import { IoArrowBack } from "react-icons/io5";
 import CoinDetailsPage from "@/components/CoinDetailsPage";
 import GeckoTerminal from "@/components/GeckoTerminal";
 import Navbar from "@/components/NavBar";
-import { mockApps } from "@/data/app";
+import { mockApps } from "@/data/card";
 import { notFound } from "next/navigation";
 
 type ParamsPromise = Promise<{ id: string }>;

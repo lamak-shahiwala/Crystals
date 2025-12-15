@@ -2,7 +2,7 @@
 
 "use client";
 
-import { mockApps } from "@/data/app";
+import { mockApps } from "@/data/card";
 import Card from "../Card";
 import type { CardData, Stat } from "@/types/card";
 
