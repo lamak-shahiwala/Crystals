@@ -19,6 +19,8 @@ body.modal-open {
   /* Brand Colors */
   --color-primary: #34C759;
 
+  --color-negative: #FF3B30;
+
   /* Background System */
   --color-bg: #ffffff;
   --color-bg-secondary: #f7f7f7;

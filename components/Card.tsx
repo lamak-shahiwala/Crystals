@@ -131,8 +131,8 @@ export default React.memo(function Card({ data, className = "" }: Props) {
                       "text-2xl font-bold",
                       stat.id === "24h△"
                         ? Number(stat.value) >= 0
-                          ? "text-[#34C759]"
-                          : "text-[#FF3B30]"
+                          ? "text-primary"
+                          : "text-negative"
                         : "text-gray-900"
                     )}
                   >
@@ -192,8 +192,8 @@ export default React.memo(function Card({ data, className = "" }: Props) {
                     "text-xl font-bold",
                     stat.id === "24h△"
                       ? Number(stat.value) >= 0
-                        ? "text-[#34C759]"
-                        : "text-[#FF3B30]"
+                        ? "text-primary"
+                        : "text-negative"
                       : "text-gray-900"
                   )}
                 >

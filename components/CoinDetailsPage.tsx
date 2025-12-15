@@ -68,8 +68,8 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
                       "text-base font-semibold",
                       stat.id === "24h△"
                         ? Number(stat.value) >= 0
-                          ? "text-[#34C759]"
-                          : "text-[#FF3B30]"
+                          ? "text-primary"
+                          : "text-negative"
                         : "text-text"
                     )}
                   >

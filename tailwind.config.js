@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "var(--color-primary)",
+        negative: "var(--color-negative)",
         bg: {
           DEFAULT: "var(--color-bg)",
           secondary: "var(--color-bg-secondary)",
