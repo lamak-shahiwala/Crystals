@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import React from "react";
 import { useRouter } from "next/navigation";
 import CTAButton from "./CTAButton";
@@ -125,8 +126,17 @@ export default React.memo(function Card({ data, className = "" }: Props) {
                   <div className="text-xs text-gray-500 uppercase mb-1">
                     {stat.label}
                   </div>
-                  <div className="text-2xl font-bold text-gray-900">
-                    {stat.value}
+                  <div
+                    className={clsx(
+                      "text-2xl font-bold",
+                      stat.id === "24h△"
+                        ? Number(stat.value) >= 0
+                          ? "text-[#34C759]"
+                          : "text-[#FF3B30]"
+                        : "text-gray-900"
+                    )}
+                  >
+                    {stat.id === "24h△" ? `${stat.value}%` : stat.value}
                   </div>
                 </div>
               ))}
@@ -177,8 +187,17 @@ export default React.memo(function Card({ data, className = "" }: Props) {
                 <div className="text-xs text-gray-500 uppercase mb-1">
                   {stat.label}
                 </div>
-                <div className="text-xl font-bold text-gray-900">
-                  {stat.value}
+                <div
+                  className={clsx(
+                    "text-xl font-bold",
+                    stat.id === "24h△"
+                      ? Number(stat.value) >= 0
+                        ? "text-[#34C759]"
+                        : "text-[#FF3B30]"
+                      : "text-gray-900"
+                  )}
+                >
+                  {stat.id === "24h△" ? `${stat.value}%` : stat.value}
                 </div>
               </div>
             ))}

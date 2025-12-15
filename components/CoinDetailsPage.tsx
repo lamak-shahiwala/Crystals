@@ -63,8 +63,17 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
                   <div className="text-xs text-text-muted mb-1">
                     {stat.label}
                   </div>
-                  <div className="text-base font-semibold text-text">
-                    {stat.value}
+                  <div
+                    className={clsx(
+                      "text-base font-semibold",
+                      stat.id === "24h△"
+                        ? Number(stat.value) >= 0
+                          ? "text-[#34C759]"
+                          : "text-[#FF3B30]"
+                        : "text-text"
+                    )}
+                  >
+                    {stat.id === "24h△" ? `${stat.value}%` : stat.value}
                   </div>
                 </div>
               ))}

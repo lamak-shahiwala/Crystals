@@ -13,7 +13,7 @@ export const mockApps: CardData[] = [
     stats: [
       { id: 'mktap', label: 'MCAP', value: '558.0k' },
       { id: '24h', label: '24h', value: '18.1k' },
-      { id: '24h△', label: '24h△', value: '+15.26%' },
+      { id: '24h△', label: '24h△', value: '+15.26' },
     ],
     totalEthRaised: '18 ETH',
   },
@@ -28,7 +28,7 @@ export const mockApps: CardData[] = [
     stats: [
       { id: 'mktcap', label: 'MCAP', value: '312.8k' },
       { id: '24h', label: '24h', value: '11.2k' },
-      { id: '24h△', label: '24h△', value: '-1.88%' },
+      { id: '24h△', label: '24h△', value: '-1.88' },
     ],
     totalEthRaised: '11 ETH',
   },
@@ -43,7 +43,7 @@ export const mockApps: CardData[] = [
     stats: [
       { id: 'mktcap', label: 'MCAP', value: '158.5k' },
       { id: '24h', label: '24h', value: '7.8k' },
-      { id: '24h△', label: '24h△', value: '+2.56%' },
+      { id: '24h△', label: '24h△', value: '+2.56' },
     ],
     totalEthRaised: '6 ETH',
   },
@@ -58,7 +58,7 @@ export const mockApps: CardData[] = [
   stats: [
     { id: "mktcap", label: "MCAP", value: "121.4k" },
     { id: "24h", label: "24h", value: "4.9k" },
-    { id: "24h△", label: "24h△", value: "+6.42%" },
+    { id: "24h△", label: "24h△", value: "+6.42" },
   ],
   totalEthRaised: "4 ETH",
 },
@@ -73,7 +73,7 @@ export const mockApps: CardData[] = [
   stats: [
     { id: "mktcap", label: "MCAP", value: "97.6k" },
     { id: "24h", label: "24h", value: "3.1k" },
-    { id: "24h△", label: "24h△", value: "+1.03%" },
+    { id: "24h△", label: "24h△", value: "+1.03" },
   ],
   totalEthRaised: "3 ETH",
 },
@@ -88,7 +88,7 @@ export const mockApps: CardData[] = [
   stats: [
     { id: "mktcap", label: "MCAP", value: "82.9k" },
     { id: "24h", label: "24h", value: "2.6k" },
-    { id: "24h△", label: "24h△", value: "-0.74%" },
+    { id: "24h△", label: "24h△", value: "-0.74" },
   ],
   totalEthRaised: "2 ETH",
 },
@@ -103,7 +103,7 @@ export const mockApps: CardData[] = [
   stats: [
     { id: "mktcap", label: "MCAP", value: "61.3k" },
     { id: "24h", label: "24h", value: "1.9k" },
-    { id: "24h△", label: "24h△", value: "+9.88%" },
+    { id: "24h△", label: "24h△", value: "+9.88" },
   ],
   totalEthRaised: "1.5 ETH",
 },
@@ -118,7 +118,7 @@ export const mockApps: CardData[] = [
   stats: [
     { id: "mktcap", label: "MCAP", value: "44.7k" },
     { id: "24h", label: "24h", value: "1.2k" },
-    { id: "24h△", label: "24h△", value: "+0.41%" },
+    { id: "24h△", label: "24h△", value: "+0.41" },
   ],
   totalEthRaised: "1 ETH",
 }
