@@ -21,7 +21,7 @@ const getOtherToken = (token: TokenSymbol): TokenSymbol =>
   token === "ETH" ? "USDC" : "ETH";
 
 /* -------------------------------------------------------------------------- */
-/*                            Token Select Modal                               */
+/* Token Select Modal                               */
 /* -------------------------------------------------------------------------- */
 
 function TokenSelectModal({
@@ -41,10 +41,10 @@ function TokenSelectModal({
       onClick={onClose}
     >
       <div
-        className="w-72 rounded-2xl bg-bg p-4"
+        className="w-72 rounded-[2.5rem] bg-bg p-6"
         onClick={(e) => e.stopPropagation()}
       >
-        <h3 className="mb-3 text-lg font-semibold">Select a token</h3>
+        <h3 className="mb-3 text-lg font-semibold px-1">Select a token</h3>
 
         <div className="space-y-2">
           {TOKENS.map((token) => (
@@ -54,7 +54,7 @@ function TokenSelectModal({
                 onSelect(token);
                 onClose();
               }}
-              className="w-full flex items-center justify-between rounded-xl bg-gray-100 px-4 py-3 hover:bg-gray-200"
+              className="w-full flex items-center justify-between rounded-2xl bg-gray-100 px-4 py-3 hover:bg-gray-200"
             >
               <span className="font-medium">{token}</span>
             </button>
@@ -66,7 +66,7 @@ function TokenSelectModal({
 }
 
 /* -------------------------------------------------------------------------- */
-/*                                Swap Modal                                  */
+/* Swap Modal                                  */
 /* -------------------------------------------------------------------------- */
 
 export function SwapModal({ open, onClose }: Props) {
@@ -180,21 +180,26 @@ export function SwapModal({ open, onClose }: Props) {
         <div
           ref={modalRef}
           onClick={(e) => e.stopPropagation()}
-          className="w-full max-w-md rounded-2xl bg-bg p-4"
+          className="w-full max-w-md rounded-[2.5rem] lg:rounded-[3rem] bg-bg p-6"
         >
           {/* Header */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between px-1">
             <h2 className="text-lg font-semibold">Swap</h2>
-            <button onClick={onClose}>✕</button>
+            <button
+              onClick={onClose}
+              className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              ✕
+            </button>
           </div>
 
           {/* Sell */}
-          <div className="mt-4 rounded-xl bg-gray-100 p-4">
+          <div className="mt-4 rounded-2xl bg-gray-100 p-4">
             <div className="flex justify-between items-center">
               <p className="text-sm text-gray-500">Sell</p>
               <button
                 onClick={() => setSelecting("sell")}
-                className="flex items-center gap-1 rounded-full bg-bg px-3 py-1 text-sm"
+                className="flex items-center gap-1 rounded-full bg-bg px-3 py-1 text-sm shadow-sm"
               >
                 {sellToken}
                 <FiChevronDown />
@@ -212,22 +217,22 @@ export function SwapModal({ open, onClose }: Props) {
           </div>
 
           {/* Switch */}
-          <div className="flex justify-center -my-3">
+          <div className="flex justify-center -my-3 z-10 relative">
             <button
               onClick={switchTokens}
-              className="rounded-full bg-bg p-2 shadow"
+              className="rounded-full bg-bg p-2 shadow-md border border-gray-100 hover:shadow-lg transition-shadow"
             >
               <FiArrowDown size={18} />
             </button>
           </div>
 
           {/* Buy */}
-          <div className="rounded-xl bg-gray-100 p-4">
+          <div className="rounded-2xl bg-gray-100 p-4">
             <div className="flex justify-between items-center">
               <p className="text-sm text-gray-500">Buy</p>
               <button
                 onClick={() => setSelecting("buy")}
-                className="flex items-center gap-1 rounded-full bg-bg px-3 py-1 text-sm"
+                className="flex items-center gap-1 rounded-full bg-bg px-3 py-1 text-sm shadow-sm"
               >
                 {buyToken}
                 <FiChevronDown />
@@ -245,13 +250,13 @@ export function SwapModal({ open, onClose }: Props) {
             )}
           </div>
 
-          {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
+          {error && <p className="mt-2 text-sm text-red-500 px-1">{error}</p>}
 
           {/* Action */}
           {!authenticated ? (
             <button
               onClick={login}
-              className="mt-5 w-full rounded-xl bg-primary py-3 text-bg"
+              className="mt-5 w-full rounded-2xl bg-primary py-3 text-bg font-medium hover:opacity-90 transition-opacity"
             >
               Connect Wallet
             </button>
@@ -259,7 +264,7 @@ export function SwapModal({ open, onClose }: Props) {
             <button
               onClick={handleSwap}
               disabled={!sellAmount || loading}
-              className="mt-5 w-full rounded-xl bg-primary py-3 text-bg disabled:opacity-50"
+              className="mt-5 w-full rounded-2xl bg-primary py-3 text-bg font-medium disabled:opacity-50 hover:opacity-90 transition-opacity"
             >
               {loading ? "Trading…" : "Trade"}
             </button>
