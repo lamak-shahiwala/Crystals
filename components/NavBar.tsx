@@ -33,7 +33,8 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   className="flex justify-between items-center px-4 py-2 rounded-lg text-gray-800 hover:bg-gray-100 transition"
                 >
-                  <span>minidev.fun</span> <LuExternalLink />
+                  <img src={"/images/minidev.png"} className="h-6 lg:h-8" />{" "}
+                  <LuExternalLink />
                 </a>
               </div>
             )}
