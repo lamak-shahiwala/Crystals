@@ -23,6 +23,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Tokens.fun" />
+      </head>
       <body
         className={`${funnelDisplay.variable} ${funnelSans.variable} font-body antialiased`}
       >
