@@ -9,8 +9,10 @@ export type CardData = {
   id: string;
   position: number;
   appName: string;
+  tokenSymbol: string; 
   authorHandle: string;
   authorAvatar?: string;
+  tokenImage?: string;
   description: string;
   stats: Stat[];
   totalEthRaised?: string;
@@ -20,6 +22,7 @@ export const defaultCardData: CardData = {
   id: "degen-id-01",
   position: 0,
   appName: 'degen',
+  tokenSymbol: 'DEGEN', // Added: The ticker symbol
   authorHandle: '0xmaster22',
   authorAvatar: undefined,
   description:

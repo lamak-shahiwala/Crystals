@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiCopy } from "react-icons/fi";
 import { Details } from "@/types/details";
+import { IoCheckmarkOutline } from "react-icons/io5";
 
 /* -----------------------------------------------------
  * Helpers
@@ -52,8 +53,12 @@ function DetailsRow({ label, value, copyable }: DetailsRowProps) {
                      text-sm font-semibold text-text-muted transition
                      hover:text-text hover:border-black/20"
         >
-          <FiCopy className="h-4 w-4 shrink-0" />
-          <span>{copied ? "Copied" : shortenHash(value)}</span>
+          {copied ? (
+            <IoCheckmarkOutline className="h-4 w-4 shrink-0 text-primary" />
+          ) : (
+            <FiCopy className="h-4 w-4 shrink-0" />
+          )}
+          <span>{shortenHash(value)}</span>
         </button>
       ) : (
         <span className="text-sm font-semibold text-text">{value}</span>

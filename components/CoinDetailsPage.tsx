@@ -1,38 +1,41 @@
 "use client";
 
-import { CardData } from "@/types/card";
 import { useState } from "react";
 import CTAButton from "./CTAButton";
 import clsx from "clsx";
 import { IoGlobeOutline } from "react-icons/io5";
 import { FaDiscord, FaXTwitter } from "react-icons/fa6";
 import ActivitiesList from "./ActivitiesList";
-import { mockActivities } from "@/data/activity";
 import HoldersList from "./HoldersList";
-import { mockHolders } from "@/data/holders";
 import DetailsList from "./DetailsList";
-import { mockDetails } from "@/data/details";
 import TokenomicsList from "./TokenomicsList";
-import { mockTokenomics } from "@/data/tokenomics";
+import { CompositeTokenData } from "@/app/lib/api";
 
-export default function CoinDetailsPage({ data }: { data: CardData }) {
+export default function CoinDetailsPage({
+  data,
+}: {
+  data: CompositeTokenData;
+}) {
   const [activeTab, setActiveTab] = useState<
     "activity" | "holders" | "details" | "tokenomics"
   >("activity");
 
+  // Destructure for easier access while keeping your UI logic intact
+  const { cardData, tokenomics, details, holders, activities } = data;
+
   return (
     <div>
       <div className="rounded-[2.5rem] border overflow-hidden">
-        <div className="h-full flex flex-col bg-bg text-text rounded-2xl p-6">
+        <div className="h-full flex flex-col bg-bg text-text rounded-2xl p-6 scrollbar-hide">
           {/* Header */}
           <div className="mb-5">
             <h1 className="text-3xl font-title leading-tight">
-              {data.appName}
+              {cardData.appName}
             </h1>
 
             <div className="flex items-center gap-2 mt-1 ml-1">
               <span className="text-sm text-text-muted">
-                by {data.authorHandle}
+                by {cardData.authorHandle}
               </span>
 
               <button className="w-7 h-7 flex items-center justify-center rounded-full bg-bg-tertiary hover:bg-bg-secondary">
@@ -51,12 +54,12 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
 
           {/* Description */}
           <p className="text-sm text-text-subtle mt-1 mb-6">
-            {data.description}
+            {cardData.description}
           </p>
 
           {/* Stats */}
           <div className="grid grid-cols-3 gap-3 mb-4 lg:mb-10">
-            {data.stats
+            {cardData.stats
               .filter((stat) => stat.id !== "eth")
               .map((stat) => (
                 <div key={stat.id} className="rounded-md p-3 bg-white/3">
@@ -67,13 +70,13 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
                     className={clsx(
                       "text-base font-semibold",
                       stat.id === "24h△"
-                        ? Number(stat.value) >= 0
+                        ? parseFloat(stat.value) >= 0
                           ? "text-primary"
                           : "text-negative"
                         : "text-text"
                     )}
                   >
-                    {stat.id === "24h△" ? `${stat.value}%` : stat.value}
+                    {stat.value}
                   </div>
                 </div>
               ))}
@@ -117,21 +120,19 @@ export default function CoinDetailsPage({ data }: { data: CardData }) {
 
           {/* Tab Content */}
           <div className="flex-1 overflow-auto pr-2 text-sm text-text-muted">
-            {activeTab === "activity" && (
-              <ActivitiesList items={mockActivities} />
-            )}
+            {activeTab === "activity" && <ActivitiesList items={activities} />}
 
-            {activeTab === "holders" && <HoldersList holders={mockHolders} />}
+            {activeTab === "holders" && <HoldersList holders={holders} />}
 
             {activeTab === "details" && (
               <div className="">
-                <DetailsList details={mockDetails} />
+                <DetailsList details={details} />
               </div>
             )}
 
             {activeTab === "tokenomics" && (
               <div className="">
-                <TokenomicsList tokenomics={mockTokenomics} />
+                <TokenomicsList tokenomics={tokenomics} />
               </div>
             )}
 

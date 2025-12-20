@@ -19,9 +19,11 @@ export default React.memo(function Card({ data, className = "" }: Props) {
     position = 0,
     appName = "Untitled App",
     authorHandle = "unknown",
-    authorAvatar,
+    tokenSymbol = "",
+    authorAvatar = "",
     description = "",
     stats = [],
+    tokenImage = "",
   } = data ?? {};
 
   const navigate = () => {
@@ -33,12 +35,6 @@ export default React.memo(function Card({ data, className = "" }: Props) {
       className={`w-full max-w-6xl mx-auto pt-2 pb-2 ${className}`}
       aria-label={`${appName} card`}
     >
-      {/* APPLYING THE CONCEPT:
-        Desktop: Padding is 32px (p-8). If we want an inner visual radius of 16px, 
-                 Outer = 32 + 16 = 48px (rounded-[3rem]).
-        Mobile:  Padding is 24px (p-6). If we want an inner visual radius of 16px, 
-                 Outer = 24 + 16 = 40px (rounded-[2.5rem]).
-      */}
       <div
         onClick={navigate}
         className="relative bg-white rounded-[2.5rem] lg:rounded-[3rem] shadow-lg border border-gray-200 overflow-hidden cursor-pointer hover:shadow-xl transition-shadow duration-300"
@@ -50,30 +46,15 @@ export default React.memo(function Card({ data, className = "" }: Props) {
         >
           {(position === 1 || position === 2 || position === 3) && (
             <div className="flex items-center gap-2 px-3 py-2 rounded-r-full bg-white/80 border border-border backdrop-blur shadow">
-              {position === 1 && (
-                <img
-                  src="/images/gold.png"
-                  alt="Gold position"
-                  className="w-6 lg:w-7 h-6 lg:h-7 object-contain"
-                />
-              )}
-              {position === 2 && (
-                <img
-                  src="/images/silver.png"
-                  alt="Silver position"
-                  className="w-6 lg:w-7 h-6 lg:h-7 object-contain"
-                />
-              )}
-              {position === 3 && (
-                <img
-                  src="/images/bronze.png"
-                  alt="Bronze position"
-                  className="w-6 lg:w-7 h-6 lg:h-7 object-contain"
-                />
-              )}
+              <img
+                src={`/images/${
+                  position === 1 ? "gold" : position === 2 ? "silver" : "bronze"
+                }.png`}
+                alt="position badge"
+                className="w-6 lg:w-7 h-6 lg:h-7 object-contain"
+              />
             </div>
           )}
-
           {position > 3 && (
             <div className="flex items-center gap-2 px-4 py-2 rounded-r-full bg-white/80 border border-border backdrop-blur shadow font-bold text-lg text-gray-900">
               #{position}
@@ -84,12 +65,21 @@ export default React.memo(function Card({ data, className = "" }: Props) {
         {/* Desktop Layout */}
         <div className="hidden lg:block p-8 pl-20">
           <div className="flex items-start gap-6 mb-6">
-            {/* Logo - Already follows the rule: Outer (48px) = Inner (32px) + Gap (16px) */}
+            {/* Logo Section - Restored the original double-circle UI */}
             <div className="flex-shrink-0">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                <div className="w-16 h-16 bg-purple-700 rounded-full flex items-center justify-center">
-                  <div className="w-10 h-6 border-[3px] border-white rounded-t-full" />
-                </div>
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center overflow-hidden">
+                {tokenImage ? (
+                  <img
+                    src={tokenImage}
+                    alt={appName}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  /* Original Inner Circle UI */
+                  <div className="w-16 h-16 bg-purple-700 rounded-full flex items-center justify-center">
+                    <div className="w-10 h-6 border-[3px] border-white rounded-t-full" />
+                  </div>
+                )}
               </div>
             </div>
 
@@ -113,7 +103,6 @@ export default React.memo(function Card({ data, className = "" }: Props) {
                   <span className="text-base">{authorHandle}</span>
                 </div>
               </div>
-
               <p className="text-gray-600 text-base">{description}</p>
             </div>
           </div>
@@ -136,12 +125,11 @@ export default React.memo(function Card({ data, className = "" }: Props) {
                         : "text-gray-900"
                     )}
                   >
-                    {stat.id === "24h△" ? `${stat.value}%` : stat.value}
+                    {stat.id === "24h△" ? `${stat.value}` : stat.value}
                   </div>
                 </div>
               ))}
             </div>
-
             <CTAButton className="w-52" aria-label={`Trade ${appName}`}>
               Trade
             </CTAButton>
@@ -152,10 +140,19 @@ export default React.memo(function Card({ data, className = "" }: Props) {
         <div className="lg:hidden p-6 pt-12">
           <div className="flex items-start gap-4 mb-4">
             <div className="flex-shrink-0">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                <div className="w-14 h-14 bg-purple-700 rounded-full flex items-center justify-center">
-                  <div className="w-8 h-5 border-[3px] border-white rounded-t-full" />
-                </div>
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center overflow-hidden">
+                {tokenImage ? (
+                  <img
+                    src={tokenImage}
+                    alt={appName}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  /* Original Inner Circle UI - Mobile Size */
+                  <div className="w-14 h-14 bg-purple-700 rounded-full flex items-center justify-center">
+                    <div className="w-8 h-5 border-[3px] border-white rounded-t-full" />
+                  </div>
+                )}
               </div>
             </div>
 
