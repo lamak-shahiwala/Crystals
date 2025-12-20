@@ -3,7 +3,7 @@ import { SiFarcaster } from "react-icons/si";
 
 export default function Footer() {
   return (
-    <footer className="w-full mt-10 mb-5">
+    <footer className="w-full mb-5">
       <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-center gap-6">
         <div className="flex items-center gap-6 text-sm text-gray-600">
           <>Powered by Clanker</>
