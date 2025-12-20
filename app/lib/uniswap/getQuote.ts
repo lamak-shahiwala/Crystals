@@ -1,68 +1,62 @@
 import { ethers } from "ethers";
+import { WETH_TOKEN } from "./constants";
 
-const QUOTER_V2 =
-  "0x61fFE014bA17989E743c5F6cB21bF9697530B21e";
-
-const WETH = ethers.utils.getAddress(
-  "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
-);
-
-const USDC = ethers.utils.getAddress(
-  "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
-);
-
-const FEE = 500;
+// Uniswap V3 Quoter V2 Address (Verified on Base)
+const QUOTER_V3_ADDRESS = "0x3d4e44Eb1374240CE5F1B871ab261CD16335B76a"; 
 
 const QUOTER_ABI = [
-  "function quoteExactInput(bytes path, uint256 amountIn) external returns (uint256)",
+  "function quoteExactInputSingle(tuple(address tokenIn, address tokenOut, uint256 amountIn, uint24 fee, uint160 sqrtPriceLimitX96)) external returns (uint256 amountOut, uint160 sqrtPriceX96After, uint32 initializedTicksCrossed, uint256 gasEstimate)",
 ];
 
-export async function getQuote(
-  provider: ethers.providers.Provider,
-  sellToken: "ETH" | "USDC",
-  buyToken: "ETH" | "USDC",
-  amountIn: string
-): Promise<string | null> {
+interface QuoteParams {
+  provider: ethers.providers.Provider;
+  sellTokenAddress: string;
+  buyTokenAddress: string;
+  amountIn: string; // User input (e.g. "1.5")
+  sellTokenDecimals: number;
+  buyTokenDecimals: number;
+}
+
+export async function getQuote({
+  provider,
+  sellTokenAddress,
+  buyTokenAddress,
+  amountIn,
+  sellTokenDecimals,
+  buyTokenDecimals,
+}: QuoteParams): Promise<string | null> {
   try {
-    if (!amountIn || Number(amountIn) <= 0) return null;
+    if (!amountIn || isNaN(Number(amountIn)) || Number(amountIn) <= 0) return null;
 
-    const quoter = new ethers.Contract(QUOTER_V2, QUOTER_ABI, provider);
+    const quoter = new ethers.Contract(QUOTER_V3_ADDRESS, QUOTER_ABI, provider);
 
-    let path: string;
-    let parsedAmount: ethers.BigNumber;
+    // Parse Input
+    const parsedAmount = ethers.utils.parseUnits(amountIn, sellTokenDecimals);
 
-    if (sellToken === "ETH" && buyToken === "USDC") {
-      parsedAmount = ethers.utils.parseEther(amountIn);
-      path = ethers.utils.solidityPack(
-        ["address", "uint24", "address"],
-        [WETH, FEE, USDC]
-      );
+    // Params for V3 Quote
+    // Note: Fee is typically 1% (10000) for Clanker tokens or 0.3% (3000) for standard tokens.
+    // If quote fails, you might need to try multiple fees.
+    const params = {
+      tokenIn: sellTokenAddress,
+      tokenOut: buyTokenAddress,
+      amountIn: parsedAmount,
+      fee: 10000, // Try 10000 (1%) first
+      sqrtPriceLimitX96: 0,
+    };
 
-      const out = await quoter.callStatic.quoteExactInput(
-        path,
-        parsedAmount
-      );
+    // Call Quoter (Static Call)
+    const result = await quoter.callStatic.quoteExactInputSingle(params);
+    const amountOut = result.amountOut || result[0];
 
-      return ethers.utils.formatUnits(out, 6);
+    return ethers.utils.formatUnits(amountOut, buyTokenDecimals);
+
+  } catch (error: any) {
+    // If 1% fee fails, try 0.3% (fallback)
+    if (error?.code === "CALL_EXCEPTION") {
+        console.warn("Quote failed with 1% fee, retrying with 0.3%...");
+        // You could implement a retry logic here with fee=3000
     }
-
-    if (sellToken === "USDC" && buyToken === "ETH") {
-      parsedAmount = ethers.utils.parseUnits(amountIn, 6);
-      path = ethers.utils.solidityPack(
-        ["address", "uint24", "address"],
-        [USDC, FEE, WETH]
-      );
-
-      const out = await quoter.callStatic.quoteExactInput(
-        path,
-        parsedAmount
-      );
-
-      return ethers.utils.formatEther(out);
-    }
-
-    return null;
-  } catch {
+    console.error("Quote Error:", error.message || error);
     return null;
   }
 }
