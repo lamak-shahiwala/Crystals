@@ -1,44 +1,70 @@
+import { useState } from "react";
+import { FiCopy } from "react-icons/fi";
 import { Details } from "@/types/details";
+
+/* -----------------------------------------------------
+ * Helpers
+ * --------------------------------------------------- */
+
+function shortenHash(value: string, start = 6, end = 4) {
+  if (!value) return "";
+  return `${value.slice(0, start)}…${value.slice(-end)}`;
+}
+
+async function copyToClipboard(text: string) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (error) {
+    console.error("Copy failed:", error);
+  }
+}
+
+/* -----------------------------------------------------
+ * Row component
+ * --------------------------------------------------- */
 
 interface DetailsRowProps {
   label: string;
   value: string;
-  isAddress?: boolean;
-  isLink?: boolean;
+  copyable?: boolean;
 }
 
-function DetailsRow({ label, value, isAddress, isLink }: DetailsRowProps) {
+function DetailsRow({ label, value, copyable }: DetailsRowProps) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    await copyToClipboard(value);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
+
   return (
     <div className="flex items-center justify-between py-1">
       {/* Label */}
       <span className="text-sm text-text-muted">{label}</span>
-      <div className="flex items-center">
-        {/* Copy icon for addresses */}
-        {isAddress && (
-          <button
-            className="rounded-md border border-white/10 px-2 py-1 text-xs text-text-muted hover:text-text"
-            title="Copy"
-          >
-            ⧉
-          </button>
-        )}
-        {/* Value */}
-        <div className="flex items-center gap-2">
-          {isLink ? (
-            <a
-              href="#"
-              className="text-sm font-semibold text-text hover:underline"
-            >
-              {value}
-            </a>
-          ) : (
-            <span className="text-sm font-semibold text-text">{value}</span>
-          )}
-        </div>
-      </div>
+
+      {/* Value */}
+      {copyable ? (
+        <button
+          type="button"
+          onClick={handleCopy}
+          className="flex min-w-[120px] items-center gap-2 rounded-md border border-black/10 px-2 py-1
+                     text-sm font-semibold text-text-muted transition
+                     hover:text-text hover:border-black/20"
+        >
+          <FiCopy className="h-4 w-4 shrink-0" />
+          <span>{copied ? "Copied" : shortenHash(value)}</span>
+        </button>
+      ) : (
+        <span className="text-sm font-semibold text-text">{value}</span>
+      )}
     </div>
   );
 }
+
+/* -----------------------------------------------------
+ * List component
+ * --------------------------------------------------- */
 
 interface DetailsListProps {
   details: Details;
@@ -49,19 +75,19 @@ export default function DetailsList({ details }: DetailsListProps) {
     <div className="space-y-2">
       <DetailsRow label="Interface" value={details.interface} />
       <DetailsRow label="Platform" value={details.platform} />
+
       <DetailsRow
         label="Contract Address"
         value={details.contractAddress}
-        isAddress
+        copyable
       />
-      <DetailsRow label="Creator" value={details.creator} isAddress />
-      <DetailsRow
-        label="Admin Address"
-        value={details.adminAddress}
-        isAddress
-      />
+
+      <DetailsRow label="Creator" value={details.creator} copyable />
+      <DetailsRow label="Admin Address" value={details.adminAddress} copyable />
+
       <DetailsRow label="Created" value={details.created} />
-      <DetailsRow label="Cast Hash" value={details.castHash} isLink />
+
+      <DetailsRow label="Cast Hash" value={details.castHash} copyable />
     </div>
   );
 }
