@@ -6,6 +6,7 @@ export const mockApps: CardData[] = [
     id: "crystal-market-0xcrystal",
     position: 1,
     appName: 'Crystal Market',
+    tokenSymbol: 'CM',
     authorHandle: '0xcrystal',
     authorAvatar: undefined,
     description:
@@ -21,6 +22,7 @@ export const mockApps: CardData[] = [
     id: "echo-swap-0xechoswap",
     position: 2,
     appName: 'EchoSwap',
+    tokenSymbol: 'ES',
     authorHandle: '0xechoswap',
     authorAvatar: undefined,
     description:
@@ -36,6 +38,7 @@ export const mockApps: CardData[] = [
     id: "lens-mall-0xlensmall",
     position: 3,
     appName: 'LensMall',
+    tokenSymbol: 'LM',
     authorHandle: '0xlensmall',
     authorAvatar: undefined,
     description:
@@ -51,6 +54,7 @@ export const mockApps: CardData[] = [
   id: "oracle-bay-0xoracle",
   position: 4,
   appName: "Oracle Bay",
+  tokenSymbol: 'OB',
   authorHandle: "0xoracle",
   authorAvatar: undefined,
   description:
@@ -66,6 +70,7 @@ export const mockApps: CardData[] = [
   id: "vault-flow-0xvaultflow",
   position: 5,
   appName: "VaultFlow",
+  tokenSymbol: 'VF',
   authorHandle: "0xvaultflow",
   authorAvatar: undefined,
   description:
@@ -81,6 +86,7 @@ export const mockApps: CardData[] = [
   id: "signal-hub-0xsignal",
   position: 6,
   appName: "Signal Hub",
+  tokenSymbol: 'SH',
   authorHandle: "0xsignal",
   authorAvatar: undefined,
   description:
@@ -96,6 +102,7 @@ export const mockApps: CardData[] = [
   id: "mint-square-0xmint",
   position: 7,
   appName: "MintSquare",
+  tokenSymbol: 'MS',
   authorHandle: "0xmint",
   authorAvatar: undefined,
   description:
@@ -111,6 +118,7 @@ export const mockApps: CardData[] = [
   id: "atlas-pay-0xatlas",
   position: 8,
   appName: "Atlas Pay",
+  tokenSymbol: 'AP',
   authorHandle: "0xatlas",
   authorAvatar: undefined,
   description:
