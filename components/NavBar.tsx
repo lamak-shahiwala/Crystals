@@ -19,7 +19,7 @@ export default function Navbar() {
               onClick={toggle}
               className="flex cursor-pointer gap-2 px-2 items-center"
             >
-              <img src={"/images/token_logo.png"} className="h-7 md:h-8" />
+              <img src={"/images/token_logo.png"} className="h-6 md:h-8" />
               {/* <GiCrystalGrowth className="h-9 w-9 md:h-10 md:w-10 lg:h-12 lg:w-12 text-gray-900 p-2 border rounded-lg" />
               <span className="hidden md:block text-xl md:text-2xl lg:text-3xl font-title font-bold text-gray-900">
                 Crystals
