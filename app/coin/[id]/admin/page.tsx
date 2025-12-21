@@ -25,27 +25,29 @@ export default async function AdminPage({ params }: Props) {
 
   // 3. Extract necessary fields
   const { appName, tokenSymbol, tokenImage, authorHandle } = tokenData.cardData;
-
-  // Shorten address for display (e.g., 0x534b...0B07)
   const shortId = `${id.substring(0, 8)}...${id.substring(id.length - 4)}`;
 
   return (
     <div className="min-h-screen w-full font-body bg-bg text-slate-800 pb-10">
       <Navbar />
 
-      <div className="px-5 pt-6 pb-2 flex items-center justify-between gap-3">
+      <div className="px-5 pt-6 pb-2 flex items-center justify-between gap-5">
         <Link href={`/coin/${id}`}>
           <button
-            className="font-normal font-body bg-white border border-gray-300 rounded-full px-4 py-2 
-              inline-flex items-center justify-center gap-2 ml-1 hover:bg-gray-50 transition-colors text-sm"
+            className="font-normal font-body bg-white border border-gray-300 rounded-full px-3 py-2 
+        inline-flex items-center gap-2 ml-1 hover:bg-gray-50 transition-colors text-sm
+        max-w-[200px]"
           >
-            <IoArrowBack /> Back to {appName}
+            <IoArrowBack className="shrink-0" />
+            <span className="whitespace-nowrap overflow-hidden text-ellipsis">
+              Back to {appName}
+            </span>
           </button>
         </Link>
 
         <button
           className="font-normal font-body bg-white border border-gray-300 rounded-full px-4 py-2 
-            inline-flex items-center justify-center gap-2 mr-1 hover:bg-gray-50 transition-colors text-sm"
+      inline-flex items-center justify-center gap-2 mr-1 hover:bg-gray-50 transition-colors text-sm"
         >
           <span className="block lg:hidden">Refresh</span>
           <span className="hidden lg:block">Refresh Data</span>
