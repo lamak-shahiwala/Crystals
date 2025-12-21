@@ -34,9 +34,9 @@ export default async function AdminPage({ params }: Props) {
       <div className="px-5 pt-6 pb-2 flex items-center justify-between gap-5">
         <Link href={`/coin/${id}`}>
           <button
-            className="font-normal font-body bg-white border border-gray-300 rounded-full px-3 py-2 
-        inline-flex items-center gap-2 ml-1 hover:bg-gray-50 transition-colors text-sm
-        max-w-[200px]"
+            className="font-normal font-body bg-white border border-gray-300 rounded-full 
+        inline-flex items-center gap-2 lg:ml-1 hover:bg-gray-50 transition-colors text-sm
+        max-w-[200px] py-2 px-4"
           >
             <IoArrowBack className="shrink-0" />
             <span className="whitespace-nowrap overflow-hidden text-ellipsis">
@@ -46,8 +46,9 @@ export default async function AdminPage({ params }: Props) {
         </Link>
 
         <button
-          className="font-normal font-body bg-white border border-gray-300 rounded-full px-4 py-2 
-      inline-flex items-center justify-center gap-2 mr-1 hover:bg-gray-50 transition-colors text-sm"
+          className="font-normal font-body bg-white border border-gray-300 rounded-full 
+      inline-flex items-center justify-center gap-2 mr-1 hover:bg-gray-50 transition-colors text-sm
+      h-12 px-4"
         >
           <span className="block lg:hidden">Refresh</span>
           <span className="hidden lg:block">Refresh Data</span>
@@ -81,7 +82,7 @@ export default async function AdminPage({ params }: Props) {
             </div>
 
             {/* Token Branding */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-start gap-4">
               <div className="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center text-white font-bold text-2xl overflow-hidden shrink-0">
                 {tokenImage ? (
                   <img
