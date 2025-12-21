@@ -368,10 +368,10 @@ export default function CreatePage() {
         <div className="pt-8">
           <button
             onClick={handleDeploy}
-            disabled={!isFormValid || isDeploying}
+            disabled={!isFormValid || isDeploying || !acceptedTerms}
             className={`w-full py-3 rounded-full font-bold transition
               ${
-                !isFormValid || isDeploying
+                !isFormValid || isDeploying || !acceptedTerms
                   ? "bg-gray-200 text-gray-400"
                   : "bg-primary text-white hover:bg-green-600"
               }`}
